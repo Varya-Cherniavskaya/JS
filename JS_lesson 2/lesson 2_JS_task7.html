@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    //Зробіть калькулятор, який дозволить вам виходячи з інформації про кількість поверхів у будинку 
+    //та кількість квартир на поверсі знаходити під'їзд та поверх певної квартири за її номером. 
+    //Наприклад для 9поверхового будинку по 4 квартири на поверх 81 квартира знаходиться на 3-му поверсі третього під'їзду. 
+    //Користувач повинен вводити за допомогою prompt кiлькiсть поверхiв, кiлькiсть квартир на поверсi та номер квартири. 
+    //Код повинен видавати пiд'їзд та поверх по номеру квартири.
+
+    let FloorNum = prompt("Введыть кількість поверхів");
+    let FlatsPerFloor = prompt("Введіть кількість квартир на одному етажі");
+    let FlatNum = prompt("Ввеіть номер квартири");
+
+    FloorNum = parseInt(FloorNum); // кількість поверхів
+    FlatsPerFloor = parseInt(FlatsPerFloor); // кількість квартир на одному етажі
+    FlatNum = parseInt(FlatNum); //номер квартири
+
+    let FlatsPerEntrance = parseInt(FloorNum * FlatsPerFloor); // кількість квартир в одному під'їзді
+    let FlatsInHouse = parseInt(FlatsPerEntrance * 3); // всього квартир у домі
+
+    let entrance = Math.floor(FlatNum / FlatsPerEntrance); // начальне значення номера під'їзда
+    let floor = 0; // номер поверха. Зразу ініціалізуємо и присвоюємо начальне значення
+
+    if ((FlatNum % FlatsPerEntrance) != 0) {
+        entrance++; //інкрементуєм, т.я. квартира знаходится в наступному під'їзді
+    }
+
+    if ((FlatNum % FlatsPerEntrance) == 0) {
+        floor = FloorNum; //квартира знаходиься на останньому поверсі
+    }
+    else {
+        floor = Math.floor((FlatNum % FlatsPerEntrance) / FlatsPerFloor); //вычисляем номер этажа
+
+        if ((FlatNum % FlatsPerFloor) != 0) {
+            floor++;
+        }
+    }
+    alert("Квартира знаходиться в " + entrance + " під'їзді, на " + floor + " поверсі");
+</script>
+</html>
